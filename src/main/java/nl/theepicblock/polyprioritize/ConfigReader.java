@@ -2,14 +2,12 @@ package nl.theepicblock.polyprioritize;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class ConfigReader {
@@ -44,11 +42,11 @@ public class ConfigReader {
 					continue;
 				}
 
-				if (!Registry.BLOCK.containsId(id)) {
+				if (!Registries.BLOCK.containsId(id)) {
 					PolyPrioritize.LOGGER.warn("[PolyPrioritize] no such block: "+line);
 					continue;
 				}
-				Block block = Registry.BLOCK.get(id);
+				Block block = Registries.BLOCK.get(id);
 				consumer.accept(block);
 				c++;
 			}

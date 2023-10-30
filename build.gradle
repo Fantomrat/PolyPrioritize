@@ -15,6 +15,11 @@ repositories {
 		url "https://maven.theepicblock.nl"
 		content { includeGroup("nl.theepicblock") }
 	}
+
+	maven {
+		url "https://maven.nucleoid.xyz"
+		content { includeGroup("xyz.nucleoid")}
+	}
 }
 
 dependencies {
@@ -23,7 +28,14 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	modImplementation "nl.theepicblock:PolyMc:${project.polymc_version}"
+	modImplementation "xyz.nucleoid:packet-tweaker:0.4.0+1.19.4"
+
+	modImplementation ("nl.theepicblock:PolyMc:${project.polymc_version}") {
+		exclude group: 'org.quiltmc', module: 'quilt-loader'
+	}
+
+
+
 }
 
 processResources {
